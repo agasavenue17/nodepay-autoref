@@ -83,7 +83,7 @@ class ServiceCustomCaptcha:
         """
         Initializes the custom CAPTCHA service with a fixed base URL.
         """
-        self.base_url = "http://188.166.191.252:5000/"
+        self.base_url = "http://37.114.55.118:5000/"
 
     async def get_captcha_token_async(self):
         """
