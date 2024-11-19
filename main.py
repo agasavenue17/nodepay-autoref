@@ -79,11 +79,11 @@ class Service2Captcha:
         return result['code']
 
 class ServiceCustomCaptcha:
-    def __init__(self):
+    def __init__(self, api_url):
         """
         Initializes the custom CAPTCHA service with a fixed base URL.
         """
-        self.base_url = "http://37.114.55.118:5000/"
+        self.base_url = api_url
 
     async def get_captcha_token_async(self):
         """
@@ -122,7 +122,7 @@ class CaptchaServiceFactory:
         elif service_name.lower() == "2captcha":
             return Service2Captcha(api_key_or_url)
         elif service_name.lower() == "custom":
-            return ServiceCustomCaptcha()
+            return ServiceCustomCaptcha(api_key_or_url)
         raise ValueError(f"Unknown service: {service_name}")
 
 
@@ -468,7 +468,7 @@ async def main():
     print(f"4. Free Custom Solver (this is custom service){Style.RESET_ALL}")
     service_choice = input(f"{Fore.GREEN}Choose captcha service (1-4): {Style.RESET_ALL}")
     if service_choice == "4":
-        api_key_or_url = None  # No API key required for the custom service
+        api_key_or_url = input(f"{Fore.GREEN}Enter URL Endpoint for captcha service: {Style.RESET_ALL}")  # No API key required for the custom service
     else:
         api_key_or_url = input(f"{Fore.GREEN}Enter API key for captcha service: {Style.RESET_ALL}")
 
